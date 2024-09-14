@@ -23,11 +23,23 @@ root.render(
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/designs" element={<Designs />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
-            <Route path="/careers" element={<Careers />}></Route>
-            <Route path="/*" element={<NoPage />}></Route>
+            <Route
+              path="/sujhatradershomepage/#/about"
+              element={<About />}
+            ></Route>
+            <Route
+              path="/sujhatradershomepage/#/designs"
+              element={<Designs />}
+            ></Route>
+            <Route
+              path="/sujhatradershomepage/#/contact"
+              element={<Contact />}
+            ></Route>
+            <Route
+              path="/sujhatradershomepage/#/careers"
+              element={<Careers />}
+            ></Route>
+            <Route path="/sujhatradershomepage/*" element={<NoPage />}></Route>
           </Routes>
         </Suspense>
       </ErrorBoundary>
