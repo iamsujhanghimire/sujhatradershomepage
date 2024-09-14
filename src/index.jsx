@@ -24,19 +24,19 @@ root.render(
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route
-              path="/sujhatradershomepage/#/about"
+              path="/sujhatradershomepage/about"
               element={<About />}
             ></Route>
             <Route
-              path="/sujhatradershomepage/#/designs"
+              path="/sujhatradershomepage/designs"
               element={<Designs />}
             ></Route>
             <Route
-              path="/sujhatradershomepage/#/contact"
+              path="/sujhatradershomepage/contact"
               element={<Contact />}
             ></Route>
             <Route
-              path="/sujhatradershomepage/#/careers"
+              path="/sujhatradershomepage/careers"
               element={<Careers />}
             ></Route>
             <Route path="/sujhatradershomepage/*" element={<NoPage />}></Route>
