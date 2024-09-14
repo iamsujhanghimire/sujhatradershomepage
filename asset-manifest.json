@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sujhatradershomepage/static/css/main.4dbda1ed.css",
-    "main.js": "/sujhatradershomepage/static/js/main.a93445ad.js",
+    "main.js": "/sujhatradershomepage/static/js/main.d35477ee.js",
     "static/js/561.923a28d4.chunk.js": "/sujhatradershomepage/static/js/561.923a28d4.chunk.js",
     "static/js/638.af4e0572.chunk.js": "/sujhatradershomepage/static/js/638.af4e0572.chunk.js",
     "static/js/376.1e5344ba.chunk.js": "/sujhatradershomepage/static/js/376.1e5344ba.chunk.js",
@@ -13,7 +13,7 @@
     "static/js/886.3c7c4a38.chunk.js": "/sujhatradershomepage/static/js/886.3c7c4a38.chunk.js",
     "index.html": "/sujhatradershomepage/index.html",
     "main.4dbda1ed.css.map": "/sujhatradershomepage/static/css/main.4dbda1ed.css.map",
-    "main.a93445ad.js.map": "/sujhatradershomepage/static/js/main.a93445ad.js.map",
+    "main.d35477ee.js.map": "/sujhatradershomepage/static/js/main.d35477ee.js.map",
     "561.923a28d4.chunk.js.map": "/sujhatradershomepage/static/js/561.923a28d4.chunk.js.map",
     "638.af4e0572.chunk.js.map": "/sujhatradershomepage/static/js/638.af4e0572.chunk.js.map",
     "376.1e5344ba.chunk.js.map": "/sujhatradershomepage/static/js/376.1e5344ba.chunk.js.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.4dbda1ed.css",
-    "static/js/main.a93445ad.js"
+    "static/js/main.d35477ee.js"
   ]
 }
