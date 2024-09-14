@@ -3,12 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@designbycode/tailwindcss-text-stroke": "^1.2.1",
+    "@emailjs/browser": "^4.3.3",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
+    "react-helmet": "^6.1.0",
+    "react-leaflet": "^4.2.1",
+    "react-scripts": "^5.0.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -34,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.23.1",
+    "tailwindcss": "^3.4.3"
   }
 }
