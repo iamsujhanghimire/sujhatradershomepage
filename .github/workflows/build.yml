@@ -1,4 +1,5 @@
-name: Sujha Traders Homepage
+name: Sujha Traders Homepage Deployment
+
 on:
   push:
     branches:
@@ -7,30 +8,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [latest] # Update to latest LTS version
     steps:
-      - uses: actions/checkout@v4.2.1 # Update to the latest version
+      # Checkout the code from the repository
+      - uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v4.0.0 # Update pnpm action to latest version
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          version: 9 # Use the latest version of pnpm
+          node-version: 18
+          cache: npm
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4.0.4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
+      # Install dependencies using npm
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
-      - name: Build
-        run: pnpm run build
+      # Build the React app
+      - name: Build the app
+        run: npm run build
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4.0.0 # Latest version of the deployment action
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./build
