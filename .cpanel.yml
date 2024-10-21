@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOY_PATH=/home/sujhatraders/public_html
-    - /bin/cp -R * $DEPLOY_PATH
+    - export DEPLOYPATH=/home/your-cpanel-username/public_html
+    - /bin/cp -R build/* $DEPLOYPATH
