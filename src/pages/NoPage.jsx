@@ -17,7 +17,7 @@ function NoPage() {
           href="/"
           className="rounded-3xl px-6 py-2 font-semibold text-White bg-Secondary hover:bg-Primary"
         >
-          Go Home To your mom
+          Go Home
         </a>
       </div>
     </div>

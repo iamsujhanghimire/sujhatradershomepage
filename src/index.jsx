@@ -20,7 +20,9 @@ root.render(
     <Router>
       <Navbar />
       <ErrorBoundary>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={<div className="text-center font-medium">Loading...</div>}
+        >
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
