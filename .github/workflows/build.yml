@@ -3,28 +3,34 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15]
+        node-version: [latest] # Update to latest LTS version
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@v4.2.1 # Update to the latest version
+
+      - uses: pnpm/action-setup@v4.0.0 # Update pnpm action to latest version
         with:
-          version: 7
+          version: 9 # Use the latest version of pnpm
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Build
         run: pnpm run build
+
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4.0.0 # Latest version of the deployment action
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
