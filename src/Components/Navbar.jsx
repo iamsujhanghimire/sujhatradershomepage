@@ -14,23 +14,23 @@ export default function Navbar() {
   let Links = [
     {
       name: "Home",
-      link: "/sujhatradershomepage/#/",
+      link: "/",
     },
     {
       name: "About Us",
-      link: "/sujhatradershomepage/#/about",
+      link: "/about",
     },
     {
       name: "Our Designs",
-      link: "/sujhatradershomepage/#/designs",
+      link: "/designs",
     },
     {
       name: "Careers",
-      link: "/sujhatradershomepage/#/careers",
+      link: "/careers",
     },
     {
       name: "Contact Us",
-      link: "/sujhatradershomepage/#/contact",
+      link: "/contact",
     },
   ];
   return (
