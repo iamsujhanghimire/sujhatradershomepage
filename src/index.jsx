@@ -35,7 +35,7 @@ root.render(
         </Suspense>
       </ErrorBoundary>
       <Footer />
+      <Analytics />
     </Router>
-    <Analytics />
   </React.StrictMode>
 );
