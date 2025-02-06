@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import "./index.css";
 import ErrorBoundary from "./ErrorBoundary"; // Ensure this path is correct
+import { Analytics } from "@vercel/analytics/react";
 
 // Lazy load page components
 const Home = lazy(() => import("./pages/Home"));
@@ -35,5 +36,6 @@ root.render(
       </ErrorBoundary>
       <Footer />
     </Router>
+    <Analytics />
   </React.StrictMode>
 );
