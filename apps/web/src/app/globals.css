@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/**
+ * Brand system — Sujha Traders Brand Guidelines v1.0.
+ * This block is the single source of truth for colour and type in apps/web.
+ * Don't hardcode hexes in components; if a value isn't here, it isn't approved.
+ */
+@theme {
+  /* Core */
+  --color-purple: #3a2d56; /* Rich Deep Purple — primary: headlines, CTAs, nav */
+  --color-forest: #355e3b; /* Deep Forest Green — secondary, sustainability     */
+  --color-ivory: #f3efe7; /* Natural Ivory — alternates with white for rhythm  */
+
+  /* Neutrals */
+  --color-ink: #2a2622; /* Charcoal Ink — body text; warm near-black          */
+  --color-warm-gray: #d9d3c7; /* Borders, dividers, disabled, input outlines */
+  --color-white: #ffffff;
+
+  /* Tints — badges and subtle fills. Full-saturation purple/green as large
+     background washes reads heavy on a content-dense page. */
+  --color-purple-tint: #e6e2ec;
+  --color-forest-tint: #e1e8e2;
+
+  /* Type. DM Serif Display is display-only — no bold cut exists, and it loses
+     legibility below headline scale. Everything under H3 is DM Sans. */
+  --font-display: var(--font-dm-serif-display), Georgia, serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400; /* DM Serif Display has a single cut; never synthesise bold. */
+    color: var(--color-purple);
+    text-wrap: balance;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--color-purple);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Keyboard focus must stay visible — this is a B2B sourcing tool that people
+     will tab through, and WCAG 2.1 AA is a stated target. */
+  :focus-visible {
+    outline: 2px solid var(--color-purple);
+    outline-offset: 2px;
+  }
+}
+
+/* Respect the OS setting. Motion is decoration here; content never depends on
+   it, so switching it off costs the reader nothing. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

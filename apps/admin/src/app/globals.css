@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* Shares the brand palette with apps/web for consistency, but this is an
+   internal tool: clarity and data-entry speed matter more than polish. */
+@theme {
+  --color-purple: #3a2d56;
+  --color-forest: #355e3b;
+  --color-ivory: #f3efe7;
+  --color-ink: #2a2622;
+  --color-warm-gray: #d9d3c7;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
