@@ -2,8 +2,8 @@
 
 /**
  * Brand system — Sujha Traders Brand Guidelines v1.0.
- * This block is the single source of truth for colour and type in apps/web.
- * Don't hardcode hexes in components; if a value isn't here, it isn't approved.
+ * Single source of truth for colour and type. Don't hardcode hexes in
+ * components; if a value isn't here, it isn't approved.
  */
 @theme {
   /* Core */
@@ -16,20 +16,32 @@
   --color-warm-gray: #d9d3c7; /* Borders, dividers, disabled, input outlines */
   --color-white: #ffffff;
 
-  /* Tints — badges and subtle fills. Full-saturation purple/green as large
-     background washes reads heavy on a content-dense page. */
+  /* Tints — badges and subtle fills only. Full-saturation purple or green as a
+     large background wash reads heavy on a content-dense page. */
   --color-purple-tint: #e6e2ec;
   --color-forest-tint: #e1e8e2;
 
-  /* Type. DM Serif Display is display-only — no bold cut exists, and it loses
+  /* Type. DM Serif Display is display-only — single cut, no bold, and it loses
      legibility below headline scale. Everything under H3 is DM Sans. */
   --font-display: var(--font-dm-serif-display), Georgia, serif;
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid scale. clamp() means no breakpoint-by-breakpoint font overrides and
+     no reflow jumps between sizes. */
+  /* Capped at 4.25rem rather than something grander: at 5.25rem the homepage
+     H1 ran to five lines and pushed the primary CTA to the fold line on a
+     1440×900 display, and below it on any shorter laptop. Above-the-fold
+     clarity is a stated requirement, so the headline yields. */
+  --text-display: clamp(2.5rem, 1.5rem + 3.4vw, 4.25rem);
+  --text-h2: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -43,9 +55,11 @@
   h1,
   h2 {
     font-family: var(--font-display);
-    font-weight: 400; /* DM Serif Display has a single cut; never synthesise bold. */
+    font-weight: 400; /* Single cut — never synthesise bold. */
     color: var(--color-purple);
     text-wrap: balance;
+    letter-spacing: -0.015em;
+    line-height: 1.06;
   }
 
   h3,
@@ -55,22 +69,98 @@
     font-family: var(--font-sans);
     font-weight: 500;
     color: var(--color-purple);
+    text-wrap: balance;
   }
 
   p {
     text-wrap: pretty;
   }
 
-  /* Keyboard focus must stay visible — this is a B2B sourcing tool that people
-     will tab through, and WCAG 2.1 AA is a stated target. */
+  /* Every figure on this site is a claim a buyer may check. Tabular figures
+     keep columns of numbers aligned and reinforce the spec-sheet register. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-purple);
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-purple);
+    color: var(--color-white);
   }
 }
 
-/* Respect the OS setting. Motion is decoration here; content never depends on
-   it, so switching it off costs the reader nothing. */
+@layer utilities {
+  /* Paper grain. An inline SVG turbulence rather than an image request — costs
+     no round trip and keeps ivory from reading as flat digital beige. */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.32;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /* Hairline rules — the technical-drawing register. */
+  .rule-t {
+    border-top: 1px solid var(--color-warm-gray);
+  }
+  .rule-b {
+    border-bottom: 1px solid var(--color-warm-gray);
+  }
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────────────
+   Transform and opacity only. Both are compositor-driven, so nothing here can
+   trigger layout and push CLS off zero. Elements reserve their space up front
+   and animate within it. */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wipe {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.75s cubic-bezier(0.2, 0.65, 0.3, 1) both;
+}
+
+/* Scroll reveal. Starts hidden only when JS is present to reveal it —
+   [data-reveal] is set by the component, so no-JS readers see everything. */
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translate3d(0, 1.5rem, 0);
+}
+
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.65, 0.3, 1),
+    transform 0.7s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -79,5 +169,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  [data-reveal="pending"] {
+    opacity: 1;
+    transform: none;
   }
 }

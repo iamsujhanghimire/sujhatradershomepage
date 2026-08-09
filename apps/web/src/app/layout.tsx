@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { BRAND_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -42,7 +44,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+      <body className="flex min-h-screen flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[60] focus:bg-purple focus:px-4 focus:py-2.5 focus:font-sans focus:text-sm focus:text-white"
+        >
+          Skip to content
+        </a>
+        <Header />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }
